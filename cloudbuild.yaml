@@ -6,7 +6,7 @@ steps:
   - decrypt
   - --ciphertext-file=uplifted-agency-369506-fec2b210ffa6.json.enc
   - --plaintext-file=uplifted-agency-369506-fec2b210ffa6.json
-  - --location=me-west1a
+  - --location=me-west1
   - --keyring=jubafoundation-keyring
   - --key=jubafoundation-key
 - name: 'gcr.io/cloud-builders/docker'
