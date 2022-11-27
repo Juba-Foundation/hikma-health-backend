@@ -17,6 +17,6 @@ case ${APP_ENV} in
         gunicorn --timeout 6000 --access-logfile - --error-logfile - --log-level debug -w 1 -b 0.0.0.0:42069 app:app
         ;;
     *)
-        APP_PORT=8080 python pywsgi.py
+        APP_PORT=8080 python3 pywsgi.py
         ;;
 esac

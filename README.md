@@ -39,10 +39,17 @@ Run activate alias script.
 In terminal,
 
 ```
+sudo su - postgres
 psql
-create user hikma_dev login password [password]; //use UUID and record this
+create user hikma_dev login password 'password'; //use UUID and record this
 \q
+
+// Create a database with its owner
 Createdb hikma_dev -O hikma_dev
+
+/////////
+CREATE USER hikma_dev WITH PASSWORD 'password'; // use UUID and record this
+CREATE DATABASE dbname OWNER rolename;
 ```
 
 
@@ -54,6 +61,11 @@ Set EXPORTS_STORAGE_BUCKET to hikma-api-exports (to be created)
 **Create Key Ring/ Service Account, and Key:**
 ----------------------------------------------
 GCP left nav> Security > Cryptographic Keys > Create Key Ring and Key
+
+Or create using the cloud shell.
+```
+gcloud kms keyrings create "[KEY_RING_NAME]" --location "[LOCATION]"
+```
 IAM > Service accounts > Create Service Account > “hikma-app-service-account” (or whatever you want to call it) > Create> Give it the Cloud SQL Admin Role > Continue
 In Service accounts list, on hikma-app-service-account, click actions, create key (JSON)
 Json key will download
