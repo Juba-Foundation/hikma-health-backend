@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: hikma-health-backend-nv
-  name: hikma-health-backend-nv
+    app: uplifted-agency-369506
+  name: uplifted-agency-369506
   namespace: default
 spec:
   progressDeadlineSeconds: 600
@@ -11,7 +11,7 @@ spec:
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: hikma-health-backend-nv
+      app: uplifted-agency-369506
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -20,10 +20,10 @@ spec:
   template:
     metadata:
       labels:
-        app: hikma-health-backend-nv
+        app: uplifted-agency-369506
     spec:
       containers:
-      - image: gcr.io/hikma-health/hikma-health-backend-nv:24cfdeace6301704a6b27a3623344d84dd342c30
+      - image: gcr.io/uplifted-agency-369506/hikma-health-backend:b7dfc8ee2709415954eb268155eefb6b8445b15f
         imagePullPolicy: IfNotPresent
         name: hikma-health-backend
         resources: {}
