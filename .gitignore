@@ -117,3 +117,6 @@ ENV/
 
 # Redis
 dump.rdb
+
+
+secrets.txt

@@ -29,7 +29,7 @@ steps:
 images:
 - 'gcr.io/$PROJECT_ID/hikma-health-backend:$COMMIT_SHA'
 substitutions:
-  _DB_INSTANCE: 'uplifted-agency-369506:me-west1a:hikma-db'
+  _DB_INSTANCE: 'uplifted-agency-369506:me-west1:hikma-db'
   _DB_NAME: 'hikma_prod'
 options:
   machineType: 'N1_HIGHCPU_8'

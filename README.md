@@ -181,20 +181,22 @@ Most importantly, you'll use:
 ```
 
 If they are not already there, copy these 6 files into the k8s directory of your repository and update the filenames. 
-Using backend-config.yaml, create the BackendConfig.
-In certificate.yaml, specify your hostname and domain, and create the ManagedCertificate.
+1. Using backend-config.yaml, create the BackendConfig.
+2. In certificate.yaml, specify your hostname and domain, and create the ManagedCertificate.
  
-In deployment.yaml, Make sure to point to the image that was created from the build trigger. Name this deployment something like `hikma-health-backend` with an app label so that you can reference it from the service. Also provide a container name, which can be the same. Create the Deployment. 
+3. In deployment.yaml, Make sure to point to the image that was created from the build trigger. Name this deployment something like `hikma-health-backend` with an app label so that you can reference it from the service. Also provide a container name, which can be the same. Create the Deployment. 
  
-In nodeport-service.yaml, Make sure to point to the backend config and the app name from the deployment. Create the Service.
+4. In nodeport-service.yaml, Make sure to point to the backend config and the app name from the deployment. Create the Service.
  
-In service-ingress.yaml, Make sure to point to the managed certificate, the name of the service you just created, and create a unique IP name. Create the Ingress.
+5. In service-ingress.yaml, Make sure to point to the managed certificate, the name of the service you just created, and create a unique IP name. Create the Ingress.
+`gcloud compute addresses create [name]-ip --global `
+`gcloud compute addresses describe [name]-ip --global`
  
-Go to https://domains.google.com and add a new DNS Resource Record. Use the same host name as the domain that you specified in the certificate.yaml. Add the IP address of the Ingress for the record
+6. Go to https://domains.google.com and add a new DNS Resource Record. Use the same host name as the domain that you specified in the certificate.yaml. Add the IP address of the Ingress for the record
  
-In export-cronjob.yaml, specify what schedule you want to use for the patient visit data export (`"0 * * * *"` is every hour). Point to the image to use. You may want to make this dynamic so that you don’t have to update the CronJob after the deployment runs. Create the CronJob.
+7. In export-cronjob.yaml, specify what schedule you want to use for the patient visit data export (`"0 * * * *"` is every hour). Point to the image to use. You may want to make this dynamic so that you don’t have to update the CronJob after the deployment runs. Create the CronJob.
  
-Lastly, using the correct compute zone, cluster name, deployment name, container name, and image, add the following lines back into the cloudbuild file:
+8. Lastly, using the correct compute zone, cluster name, deployment name, container name, and image, add the following lines back into the cloudbuild file:
 ``` 
  name: 'gcr.io/cloud-builders/kubectl'
  env: ['CLOUDSDK_COMPUTE_ZONE=us-east1-c', 'CLOUDSDK_CONTAINER_CLUSTER=ema-cluster']

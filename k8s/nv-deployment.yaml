@@ -23,7 +23,7 @@ spec:
         app: hikma-health-backend
     spec:
       containers:
-      - image: gcr.io/uplifted-agency-369506/hikma-health-backend:b7dfc8ee2709415954eb268155eefb6b8445b15f
+      - image: gcr.io/uplifted-agency-369506/hikma-health-backend:194eaaecafcd995b1b075c13760594628c91ae89
         imagePullPolicy: IfNotPresent
         name: hikma-health-backend
         resources: {}

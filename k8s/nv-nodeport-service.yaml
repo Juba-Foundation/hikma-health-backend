@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: nv-nodeport-service
   annotations:
-    cloud.google.com/backend-config: '{"ports": {"80":"nv-backend-config"}}'
+    cloud.google.com/backend-config: '{"ports": {"80":"nv-app-backendconfig"}}'
 spec:
   externalTrafficPolicy: Cluster
   ports:
@@ -12,5 +12,5 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    app: uplifted-agency-369506
+    app: hikma-health-backend
   type: NodePort

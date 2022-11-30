@@ -3,6 +3,6 @@ kind: BackendConfig
 metadata:
   name: nv-app-backendconfig
 spec:
-  timeoutSec: 600
+  timeoutSec: 180
   connectionDraining:
     drainingTimeoutSec: 600

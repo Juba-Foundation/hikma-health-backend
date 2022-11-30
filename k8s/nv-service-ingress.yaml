@@ -1,11 +1,25 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  annotations:
-    kubernetes.io/ingress.global-static-ip-name: nv-app-ip
-    networking.gke.io/managed-certificates: nv-certificate
   name: nv-service-ingress
+  annotations:
+    kubernetes.io/ingress.class: gce
+    kubernetes.io/ingress.global-static-ip-name: hikma-api-ip
+    networking.gke.io/managed-certificates: hikma-api-certificate
 spec:
-  backend:
-    serviceName: nv-nodeport-service
-    servicePort: 80
+  defaultBackend:
+    service:
+      name: nv-nodeport-service
+      port: 
+        number: 80
+  # rules:
+  #   # - host: hikma-api.jubafoundation.org
+  #   - http:
+  #       paths:
+  #         - path: /
+  #           pathType: Prefix
+  #           backend:
+  #             service:
+  #               name: nv-nodeport-service
+  #               port: 
+  #                 number: 80
