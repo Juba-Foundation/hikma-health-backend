@@ -4,4 +4,4 @@ metadata:
   name: hikma-api-certificate
 spec:
   domains:
-    - "hikma-api.jubafoundation.org"
+    - "hikmaapi.jubafoundation.org"

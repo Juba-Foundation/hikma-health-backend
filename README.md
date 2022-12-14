@@ -21,6 +21,7 @@ Google Cloud Console > Google Kubernetes Engine - new cluster, choose closest re
 GCP > SQL > Create Instance “hikma-db”:
 create default user (“postgres”), create UUID password and save it somewhere. 
 Use the same compute zone as the cluster.
+You can Choose either a Private or Public IP. Learn more about the pros and cons of each
 
 **Create bash alias:**
 ----------------------
