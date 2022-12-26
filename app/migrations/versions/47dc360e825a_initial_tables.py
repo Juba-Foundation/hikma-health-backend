@@ -3,33 +3,40 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '47dc360e825a'
+revision = "47dc360e825a"
 down_revision = None
 branch_labels = None
 depends_on = None
 
 
 def upgrade():
-    op.execute("""
+    op.execute(
+        """
     CREATE TABLE string_ids (
       id uuid PRIMARY KEY
     )
-    """)
+    """
+    )
 
-    op.execute("""
+    op.execute(
+        """
     CREATE TABLE string_content (
       id uuid REFERENCES string_ids(id) ON DELETE CASCADE,
       language varchar(5),
       content text,
       edited_at timestamp with time zone
     );
-    """)
+    """
+    )
 
-    op.execute("""
+    op.execute(
+        """
     CREATE UNIQUE INDEX ON string_content (id, language);
-    """)
+    """
+    )
 
-    op.execute("""
+    op.execute(
+        """
     CREATE TABLE patients (
       id uuid PRIMARY KEY,
       given_name uuid REFERENCES string_ids(id) ON DELETE CASCADE,
@@ -38,17 +45,21 @@ def upgrade():
       place_of_birth uuid REFERENCES string_ids(id) ON DELETE CASCADE,
       edited_at timestamp with time zone
     );
-    """)
+    """
+    )
 
-    op.execute("""
+    op.execute(
+        """
     CREATE TABLE clinics (
       id uuid PRIMARY KEY,
       name uuid REFERENCES string_ids(id) ON DELETE CASCADE,
       edited_at timestamp with time zone
     );
-    """)
+    """
+    )
 
-    op.execute("""
+    op.execute(
+        """
     CREATE TABLE users (
       id uuid PRIMARY KEY,
       name uuid REFERENCES string_ids(id) ON DELETE CASCADE,
@@ -57,9 +68,11 @@ def upgrade():
       hashed_password text not null,
       edited_at timestamp with time zone
     );
-    """)
+    """
+    )
 
-    op.execute("""
+    op.execute(
+        """
     CREATE TABLE visits (
       id uuid PRIMARY KEY,
       patient_id uuid REFERENCES patients(id) ON DELETE CASCADE,
@@ -69,9 +82,11 @@ def upgrade():
       check_out_timestamp timestamp with time zone,
       edited_at timestamp with time zone
     );
-    """)
+    """
+    )
 
-    op.execute("""
+    op.execute(
+        """
     CREATE TABLE events (
       id uuid PRIMARY KEY,
       patient_id uuid REFERENCES patients(id) ON DELETE CASCADE,
@@ -79,7 +94,8 @@ def upgrade():
       event_timestamp timestamp with time zone,
       event_metadata timestamp with time zone
     );
-    """)
+    """
+    )
 
 
 def downgrade():
@@ -90,5 +106,3 @@ def downgrade():
     op.execute("DROP TABLE patients;")
     op.execute("DROP TABLE string_content;")
     op.execute("DROP TABLE string_ids;")
-
-
