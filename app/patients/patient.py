@@ -38,7 +38,7 @@ class Patient(ClientObject):
 
     @classmethod
     def client_insert_sql(cls):
-        return """INSERT INTO patients (id, given_name, surname, date_of_birth, sex, country, hometown, section, serial_number, registered_by_provider_id, phone, edited_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"""
+        return """INSERT INTO patients (id, given_name, surname, date_of_birth, sex, country, hometown, section, serial_number, registered_by_provider_id, phone, edited_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
 
     def client_update_values(self):
         return [
